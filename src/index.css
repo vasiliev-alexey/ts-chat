@@ -1,0 +1,36 @@
+html,
+body {
+  background-color: #867777;
+}
+
+.container {
+  margin: auto;
+  max-width: 600px;
+}
+
+.messagesFormSend {
+  margin: auto;
+  max-width: 600px;
+}
+
+.userMessage {
+  border: solid 1px #201212;
+  border-radius: 5px;
+  background: #16e70e;
+  color: #222222;
+  padding: 12px;
+  text-align: center;
+  max-width: 600px;
+  margin-top: 2px;
+}
+
+.messageIncoming {
+  border: solid 1px #dedede;
+  border-radius: 5px;
+  background: #efefef;
+  color: #222222;
+  padding: 8px;
+  text-align: center;
+  max-width: 600px;
+  margin-top: 2px;
+}
