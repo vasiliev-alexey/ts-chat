@@ -40,7 +40,7 @@ export function observeWithEventSource(cb: Function): void {
   const evtSource = new EventSource(
     `${config.firebaseBaseUrl}/${config.firebaseCollection}`
   );
-  function handler(ev: any) {
+  function handler(ev: MessageEvent) {
     return cb(JSON.parse(ev.data).data);
   }
   evtSource.addEventListener("put", handler);

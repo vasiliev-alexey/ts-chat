@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render function test first render test 1`] = `
+<div
+  class="container"
+>
+  <div
+    class="messageIncoming"
+  >
+    <p
+      style="font-weight:bold"
+    >
+      Manchini
+    </p>
+    <span>
+      Win Win Win!
+    </span>
+  </div>
+  
+
+  <div
+    class="messageIncoming"
+  >
+    <p
+      style="font-weight:bold"
+    >
+      Belotti
+    </p>
+    <span>
+      Forza Italia!
+    </span>
+  </div>
+  
+
+</div>
+`;

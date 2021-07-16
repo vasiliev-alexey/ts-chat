@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createStore } from "redux";
 import "./index.css";
+import $ from "jquery";
 import { loadMessage } from "./service/loadMessage";
 import { reducer } from "./redux/reducer";
 import {
@@ -49,3 +50,21 @@ if (button !== null) {
     });
   });
 }
+
+$(document).ready(() => {
+  const emoji = {
+    ":)": "😃",
+    ":(": "\u2639",
+    "^^": "😊",
+  };
+  const reEscape = function (s: string) {
+    return s.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+  };
+  $("input.form-control").keyup(function () {
+    let text = $(this).val() as string;
+    $.each(emoji, (plaintext, unicode) => {
+      text = text.replace(new RegExp(reEscape(plaintext), "g"), unicode);
+    });
+    $(this).val(text);
+  });
+});

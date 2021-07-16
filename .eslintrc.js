@@ -22,5 +22,6 @@ module.exports = {
     "no-alert": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
+    "no-useless-escape": "off",
   },
 };

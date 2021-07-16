@@ -19,5 +19,6 @@ describe("render function test", () => {
     const result = `<div class="messageIncoming"><p style="font-weight:bold">${messages[0].name}</p><span>${messages[0].message}</span></div>\n<div class="messageIncoming"><p style="font-weight:bold">${messages[1].name}</p><span>${messages[1].message}</span></div>\n`;
     render(state);
     expect(document.querySelector(".container").innerHTML).toEqual(result);
+    expect(document.querySelector(".container")).toMatchSnapshot();
   });
 });
