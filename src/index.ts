@@ -25,6 +25,8 @@ const store = createStore(reducer, state);
 
 observeWithEventSource(async () => {
   await loadMessage(store);
+  const messagesBlock = document.querySelector(".container");
+  messagesBlock.scrollTop = messagesBlock.scrollHeight;
 });
 
 const input: HTMLInputElement = document.querySelector(".form-control");
@@ -34,22 +36,32 @@ store.subscribe(() => {
   render(store.getState());
 });
 
+async function prepareMessage() {
+  const messageText = input.value;
+  const message = {
+    name: userName,
+    message: messageText,
+  };
+  await sendMessage(message);
+  store.dispatch({
+    type: "SEND_MESSAGE",
+    message: { ...message },
+  });
+  input.value = "";
+}
+
 if (button !== null) {
   button.addEventListener("click", async (e) => {
     e.preventDefault();
-    const messageText = input.value;
-    const message = {
-      name: userName,
-      message: messageText,
-      now: Date.now(),
-    };
-    await sendMessage(message);
-    store.dispatch({
-      type: "SEND_MESSAGE",
-      message: { ...message },
-    });
+    prepareMessage();
   });
 }
+
+$("input").keypress(async (event) => {
+  if (event.which === 13) {
+    prepareMessage();
+  }
+});
 
 $(document).ready(() => {
   const emoji = {

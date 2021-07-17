@@ -1,6 +1,6 @@
 export function render(state: State): void {
   const messagesBlock = document.querySelector(".container");
-
+  messagesBlock.scrollTo(0, document.body.scrollHeight);
   let renderString = "";
 
   state.messages.forEach((el) => {

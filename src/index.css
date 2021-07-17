@@ -4,8 +4,11 @@ body {
 }
 
 .container {
-  margin: auto;
+  padding-top: 2rem;
+  max-height: 600px;
   max-width: 600px;
+  overflow-y: auto;
+  padding-bottom: 0.5rem;
 }
 
 .messagesFormSend {

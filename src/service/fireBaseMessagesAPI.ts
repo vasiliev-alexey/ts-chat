@@ -3,7 +3,7 @@ const config = {
   firebaseCollection: "messages.json",
 };
 
-export async function getMessagesList(): Promise<Message[]> {
+export async function getMessagesList(): Promise<Message[] | void> {
   return fetch(`${config.firebaseBaseUrl}/${config.firebaseCollection}`, {
     headers: {
       Accept: "application/json",
@@ -17,7 +17,8 @@ export async function getMessagesList(): Promise<Message[]> {
         result.push(el);
       });
       return result;
-    });
+    })
+    .catch(() => alert("error, not response"));
 }
 
 export async function sendMessage(data: Message): Promise<boolean> {
@@ -30,13 +31,14 @@ export async function sendMessage(data: Message): Promise<boolean> {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch(() => alert("error, not response.Try again!"));
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function observeWithEventSource(cb: Function): void {
-  // https://developer.mozilla.org/en-US/docs/Web/API/EventSource/EventSource
+export function observeWithEventSource(
+  cb: (data: { name: string; message: string }) => void
+): void {
   const evtSource = new EventSource(
     `${config.firebaseBaseUrl}/${config.firebaseCollection}`
   );
