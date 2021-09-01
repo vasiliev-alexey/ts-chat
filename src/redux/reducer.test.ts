@@ -49,4 +49,30 @@ describe("test reducer", () => {
       userName: "newUser",
     });
   });
+
+  test("issue #2 test case", () => {
+    const state: State = {
+      userName: "newUser",
+      messages: [
+        {
+          name: "Bonucci",
+          message: "glory Italy!!!",
+        },
+      ],
+    };
+
+    const message = {
+      name: "Chiellini",
+      message: "Chiellini",
+    };
+    const action1 = {
+      type: "SEND_MESSAGE",
+      message: { ...message },
+    };
+
+    const refBefore = state.messages[0];
+    const newSate = reducer(state, action1);
+    const refAfter = newSate.messages[0];
+    expect(refBefore == refAfter).toBeFalsy();
+  });
 });
